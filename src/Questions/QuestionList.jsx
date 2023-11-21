@@ -8,6 +8,8 @@ export default function QuestionList() {
         return category.add(value.Category);
     });
 
+    const questionByCategories = getQuestionByCategories(questions);
+    const submissionByQuestion = getSubmissionByQuestion(submissions);
     return (
         <div className="w-full h-full flex flex-wrap gap-3 justify-center">
             {Array.from(category).map((categoryItem, index) => {
@@ -26,8 +28,8 @@ export default function QuestionList() {
     );
 }
 
-function Category({ category, completedQuestion, questions }) {
-    // const status =
+function Category({ category, questions,completedQuestion }) {
+
     return (
         <div className="flex flex-col flex-1  ">
             <h2 className="text-xl font-bold text-slate-950 mb-5">
@@ -81,4 +83,26 @@ function filterQuestionByCategory(categoryItem) {
         questionsByCategory,
         completedQuestion,
     };
+}
+
+function getQuestionByCategories(questions) {
+    const questionByCategories = {};
+    questions.forEach(({ Category, ...arrays }) => {
+        // eslint-disable-next-line no-prototype-builtins
+        if (!questionByCategories.hasOwnProperty(Category)) {
+            questionByCategories[Category] = [];
+        }
+        questionByCategories[Category].push(arrays);
+    });
+
+    return questionByCategories;
+}
+
+function getSubmissionByQuestion(submissions) {
+    const submissionByQuestion = {};
+    submissions.forEach(({ id, status }) => {
+        submissionByQuestion[id] = status;
+    });
+
+    return submissionByQuestion;
 }
