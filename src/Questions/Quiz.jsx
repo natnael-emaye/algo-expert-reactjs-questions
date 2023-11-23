@@ -29,24 +29,11 @@ export default function Quiz() {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold text-slate-950 mb-10 ">
-                {quiz.question}
-            </h1>
+            <h1 className="text-3xl font-bold text-slate-950 mb-10 ">{quiz.question}</h1>
             {quiz.answers.map((answer, index) => (
                 <h3
                     key={index}
-                    onClick={() => setSelector(index)}
-                    className={`flex items-center text-2xl text-bold p-3 cursor-pointer   shadow-sm rounded-md m-2  
-                        ${
-                            selectedIndex == quiz.correctAnswer &&
-                            selectedIndex == index &&
-                            "bg-green-400"
-                        }
-                        ${
-                            !(selectedIndex == quiz.correctAnswer) &&
-                            selectedIndex == index &&
-                            "bg-red-400"
-                        }`}
+                    className={`flex items-center text-2xl text-bold p-3 cursor-pointer   shadow-sm rounded-md m-2`}
                 >
                     <div className="mr-4 w-6 h-6 p-[3px] border border-black rounded-full  ">
                         {selectedIndex === index && (
@@ -57,7 +44,7 @@ export default function Quiz() {
                 </h3>
             ))}
             <div className="flex items-center justify-between mt-7">
-                {selectedIndex !== -1 && (
+                {
                     <>
                         <button
                             onClick={() => {
@@ -80,7 +67,7 @@ export default function Quiz() {
                             Next
                         </button>
                     </>
-                )}
+                }
             </div>
         </div>
     );
