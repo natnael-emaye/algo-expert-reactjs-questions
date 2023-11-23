@@ -21,4 +21,67 @@ const QUIZ_Data = [
     },
 ];
 
+export default function Quiz() {
+    const [quizIndex, setQuizIndex] = useState(0);
+    const [selectedIndex, setSelector] = useState(-1);
 
+    const quiz = QUIZ_Data[quizIndex];
+
+    return (
+        <div>
+            <h1 className="text-3xl font-bold text-slate-950 mb-10 ">
+                {quiz.question}
+            </h1>
+            {quiz.answers.map((answer, index) => (
+                <h3
+                    key={index}
+                    onClick={() => setSelector(index)}
+                    className={`flex items-center text-2xl text-bold p-3 cursor-pointer   shadow-sm rounded-md m-2  
+                        ${
+                            selectedIndex == quiz.correctAnswer &&
+                            selectedIndex == index &&
+                            "bg-green-400"
+                        }
+                        ${
+                            !(selectedIndex == quiz.correctAnswer) &&
+                            selectedIndex == index &&
+                            "bg-red-400"
+                        }`}
+                >
+                    <div className="mr-4 w-6 h-6 p-[3px] border border-black rounded-full  ">
+                        {selectedIndex === index && (
+                            <div className="bg-slate-900 w-full h-full rounded-full"></div>
+                        )}
+                    </div>
+                    {answer}
+                </h3>
+            ))}
+            <div className="flex items-center justify-between mt-7">
+                {selectedIndex !== -1 && (
+                    <>
+                        <button
+                            onClick={() => {
+                                setQuizIndex(quizIndex - 1);
+                                setSelector(-1);
+                            }}
+                            disabled={quizIndex == 0}
+                            className="disabled:bg-slate-300 px-6 py-2 rounded-md bg-slate-800 text-white text-xl"
+                        >
+                            Back
+                        </button>
+                        <button
+                            onClick={() => {
+                                setQuizIndex(quizIndex + 1);
+                                setSelector(-1);
+                            }}
+                            disabled={quizIndex == QUIZ_Data.length - 1}
+                            className="disabled:bg-slate-300 px-6 py-2 rounded-md bg-slate-800 text-white text-xl"
+                        >
+                            Next
+                        </button>
+                    </>
+                )}
+            </div>
+        </div>
+    );
+}
