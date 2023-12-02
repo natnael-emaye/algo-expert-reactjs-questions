@@ -44,8 +44,8 @@ export default function Quiz() {
                 if (chosenAnswer == index) {
                     styleSelectedItem =
                         chosenAnswer == quiz.correctAnswer
-                            ? "bg-green-400"
-                            : "bg-rose-400";
+                            ? "bg-green-400 shadow-md"
+                            : "bg-rose-400 shadow-md";
                 }
 
                 return (
