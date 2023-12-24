@@ -3,6 +3,7 @@ import QuestionList from "./Questions/QuestionList";
 import TipCalculator from "./Questions/TipCalculator";
 import Quiz from "./Questions/Quiz";
 import Memory from "./Questions/Memory";
+import PhonInput from "./Questions/PhonInput";
 
 function App() {
     return (
@@ -11,7 +12,8 @@ function App() {
           {/* <TipCalculator/> */}
           {/* <QuestionList/> */}
           {/* <Quiz/> */}
-          <Memory/>
+          {/* <Memory/> */}
+          <PhonInput/>
         </div>
     );
 }
